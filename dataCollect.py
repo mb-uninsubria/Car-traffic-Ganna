@@ -8,7 +8,7 @@ import os
 print(os.path.dirname(os.path.abspath(__file__)))
 SAVE_IMAGES = False
 
-data_path = '/home/mb/Documents/Insubria/Lesson 12/images/'
+data_path = '/python-docker/images/'
 dcf = os.path.isfile( data_path + 'data_collection.csv')
 if dcf == False :
     df = pd.DataFrame(columns=['date', 'cars', 'filename'])

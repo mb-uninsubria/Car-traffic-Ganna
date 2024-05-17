@@ -12,16 +12,11 @@
 
 
 FROM python:3.8-slim-buster
-ENV DEBIAN_FRONTEND noninteractive
-
 WORKDIR /python-docker
 COPY . /python-docker/
-
-RUN apt-get update && apt-get install -y cron
-
+RUN apt-get update && apt-get install -y cron ffmpeg libsm6 libxext6
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-
 # Copy hello-cron file to the cron.d directory
 COPY cron_file /etc/cron.d/cron_file
 # Give execution rights on the cron job
@@ -30,5 +25,4 @@ RUN chmod 0644 /etc/cron.d/cron_file
 RUN crontab /etc/cron.d/cron_file 
 # Create the log file to be able to run tail
 RUN touch /python-docker/cron.log
-
-CMD [ "python3", "app.py"]
+CMD [ "python", "app.py"]
