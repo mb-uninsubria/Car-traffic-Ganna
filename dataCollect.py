@@ -6,7 +6,6 @@ import pandas as pd
 import os
 
 print(os.path.dirname(os.path.abspath(__file__)))
-SAVE_IMAGES = False
 
 data_path = '/python-docker/images/'
 dcf = os.path.isfile( data_path + 'data_collection.csv')
@@ -21,9 +20,9 @@ i_date =  now.strftime('%Y-%m-%d-%H-%M-%S')
 img_url = 'https://www.astrogeo.va.it/data/webcam/current/ganna.jpg'
 img_name = data_path + i_date + '.jpg'
 img_data = requests.get(img_url).content
-if SAVE_IMAGES:
-    with open(img_name, 'wb') as handler:
-        handler.write(img_data)
+
+with open(img_name, 'wb') as handler:
+    handler.write(img_data)
     
     
 ##### DATA PROCESSING
@@ -42,3 +41,6 @@ for i, r in enumerate(results):
     
 df.loc[df.size] = [i_date, cars, img_name]
 df.to_csv(data_path + 'data_collection.csv', index=False)
+
+##### DELETE IMAGE
+os.remove(img_name)
