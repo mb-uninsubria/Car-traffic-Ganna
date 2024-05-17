@@ -1,4 +1,9 @@
 # docker build --tag python-docker .  		# Build the image
+# docker build . -t ghcr.io/mb-uninsubria/car-traffic-ganna
+# export CR_PAT=YOUR_TOKEN
+# echo $CR_PAT | docker login ghcr.io -u USERNAME --password-stdin
+# docker push ghcr.io/mb-uninsubria/car-traffic-ganna
+
 ## docker run -it python-docker /bin/bash   # Debug issues
 # docker run -d -p 8080:8080 python-docker 	# Run the container
 # docker ps                                 # Check if the container is running
